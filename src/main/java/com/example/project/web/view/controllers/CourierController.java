@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/couriers")
+@RequestMapping("/courierEmployees")
 public class CourierController {
 
     private CourierEmployeeService courierEmployeeService;
@@ -44,7 +44,7 @@ public class CourierController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateCourierEmployee(Model model, long id, CourierEmployee courierEmployee){
+    public String updateCourierEmployee(Model model, @PathVariable long id, CourierEmployee courierEmployee){
         courierEmployeeService.updateCourierEmployee(id, courierEmployee);
         return "redirect:/courierEmployees";
     }

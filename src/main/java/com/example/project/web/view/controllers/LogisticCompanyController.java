@@ -43,7 +43,7 @@ public class LogisticCompanyController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateLogisticsCompany(Model model, long id, LogisticsCompany logisticsCompany){
+    public String updateLogisticsCompany(Model model, @PathVariable long id, LogisticsCompany logisticsCompany){
         logisticsCompanyService.updateLogisticCompany(id, logisticsCompany);
         return "redirect:/logisticCompanies";
     }

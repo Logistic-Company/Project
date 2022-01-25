@@ -8,7 +8,6 @@
     <h3 th:unless="${logisticCompanies} and ${logisticCompanies.size()}">There are no logisticCompanies!</h3>
     <table th:if="${logisticCompanies.size()>0}" class="table table-hover">
         <th>Id</th>
-        <!--<th><a th:href="@{'/schools/sort-by-name/'+${sortDirection}}"> Name</a></th>-->
         <th>Name</th>
         <th>Edit company</th>
         <th>Delete company</th>

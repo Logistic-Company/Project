@@ -43,7 +43,7 @@ public class AddressController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateAddress(Model model, long id, Address address){
+    public String updateAddress(Model model, @PathVariable long id, Address address){
         addressService.updateAddress(id, address);
         return "redirect:/addresses";
     }

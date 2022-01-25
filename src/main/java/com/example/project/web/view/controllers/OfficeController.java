@@ -43,7 +43,7 @@ public class OfficeController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateOffice(Model model, long id, Office office){
+    public String updateOffice(Model model, @PathVariable long id, Office office){
         officeService.updateOffice(id, office);
         return "redirect:/offices";
     }

@@ -1,9 +1,11 @@
 package com.example.project.services.implementations;
 
+import com.example.project.data.entity.Address;
 import com.example.project.data.entity.LogisticsCompany;
 import com.example.project.data.repository.LogisticsCompanyRepository;
 import com.example.project.services.LogisticsCompanyService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 public class LogisticsCompanyServiceImpl implements LogisticsCompanyService {
 
     private final LogisticsCompanyRepository logisticsCompanyRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public List<LogisticsCompany> getLogisticsCompanies() {
@@ -31,12 +34,14 @@ public class LogisticsCompanyServiceImpl implements LogisticsCompanyService {
 
     @Override
     public LogisticsCompany updateLogisticCompany(long id, LogisticsCompany logisticsCompany) {
-        return null;
+        LogisticsCompany logisticsCompany1 = modelMapper.map(logisticsCompany, LogisticsCompany.class);
+        logisticsCompany1.setId(1);
+        return  logisticsCompanyRepository.save(logisticsCompany);
     }
 
     @Override
     public void deleteLogisticCompany(long id) {
-
+        logisticsCompanyRepository.deleteById(id);
     }
 
     @Override

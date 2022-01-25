@@ -8,19 +8,19 @@
     <h3 th:unless="${shipments} and ${shipments.size()}">There are no shipments!</h3>
     <table th:if="${shipments.size()>0}" class="table table-hover">
         <th>Id</th>
-        <!--<th><a th:href="@{'/schools/sort-by-name/'+${sortDirection}}"> Name</a></th>-->
-<th>Weight</th>
-<th>Address</th>
-<th>Receiver</th>
-<th>Sender</th>
-<th>Edit shipment</th>
-<th>Delete shipment</th>
+        <th>Address</th>
+        <th>Weight</th>
+        <th>Receiver</th>
+        <th>Sender</th>
+        <th>Edit shipment</th>
+        <th>Delete shipment</th>
 <tr th:each="shipment : ${shipments}">
     <td th:text="${shipment.id}"></td>
+    <td th:text="${shipment.name}"></td>
     <td th:text="${shipment.weight}"></td>
-    <td th:text="${shipment.address}"></td>
     <td th:text="${shipment.receiver}"></td>
     <td th:text="${shipment.sender}"></td>
+
     <td><a class="btn btn-info" th:href="@{'/shipments/edit-shipment/'+${shipment.id}}">Edit</a></td>
     <td><a class="btn btn-danger" th:href="@{'/shipments/delete/'+${shipment.id}}">Delete</a></td>
 </tr>

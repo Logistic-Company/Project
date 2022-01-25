@@ -4,6 +4,7 @@ import com.example.project.data.entity.Shipment;
 import com.example.project.data.repository.ShipmentRepository;
 import com.example.project.services.ShipmentService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ShipmentServiceImpl implements ShipmentService {
 
     private final ShipmentRepository shipmentRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public List<Shipment> getShipments() {
@@ -31,9 +33,13 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     @Override
     public Shipment updateShipment(long id, Shipment parcel) {
-        return null;
+        Shipment shipment = modelMapper.map(parcel, Shipment.class);
+        shipment.setId(id);
+        return shipmentRepository.save(parcel);
     }
 
     @Override
-    public void deleteShipment(long id) {}
+    public void deleteShipment(long id) {
+        shipmentRepository.deleteById(id);
+    }
 }

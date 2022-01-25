@@ -37,12 +37,12 @@ public class ShipmentController {
 
     @GetMapping("/edit-shipment/{id}")
     public String showEditShipmentForm(Model model, @PathVariable Long id){
-        model.addAttribute("address", shipmentService.getShipment(id));
+        model.addAttribute("shipment", shipmentService.getShipment(id));
         return "/shipments/edit-shipment";
     }
 
     @PostMapping("/update/{id}")
-    public String updateShipment(Model model, long id, Shipment shipment){
+    public String updateShipment(Model model, @PathVariable long id, Shipment shipment){
         shipmentService.updateShipment(id, shipment);
         return "redirect:/shipments";
     }

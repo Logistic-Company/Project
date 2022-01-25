@@ -3,15 +3,15 @@
 <head th:replace="fragments :: head"></head>
 <body>
 <header th:replace="fragments :: header"></header>
-<h4>Register the Logistic Company</h4>
+<h4>Edit Client</h4>
 <div class="col-6">
-    <form action="#" th:action="@{/logisticCompanies/create}" th:object="${logisticCompany}" method="post">
+    <form action="#" th:action="@{/clients/update/{id}(id=${client.id})}" th:object="${client}" method="post">
         <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control" type="text" th:field="*{name}" placeholder="Name" id="name">
             <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
         </div>
-        <button type="submit" class="btn btn-primary">Save Company</button>
+        <button type="submit" class="btn btn-primary">Update Client</button>
     </form>
 </div>
 <footer th:replace="fragments :: footer"></footer>

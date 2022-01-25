@@ -7,25 +7,30 @@
 <div class="col-6">
     <form action="#" th:action="@{/shipments/create}" th:object="${shipment}" method="post">
         <div class="form-group">
-            <div class="form-group">
-                <label for="name">Sender</label>
-                <input class="form-control" type="text" th:field="*{sender}" placeholder="Name sender" id="name">
-                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
-            </div>
-            <!--<div class="form-group">
-                <label for="maxNumberOfStudents">Max Number of Students</label>
-                <input class="form-control" type="text" th:field="*{maxNumberOfStudents}"
-                       placeholder="Max number of students" id="maxNumberOfStudents">
-                <span class="text-danger" th:if="${#fields.hasErrors('maxNumberOfStudents')}"
-                      th:errors="*{maxNumberOfStudents}">Max Number of Students Error</span>
-            </div>
-            <div class="form-group">
-                <label for="foundationDate">Foundation Date</label>
-                <input class="form-control" type="date" th:field="*{foundationDate}" id="foundationDate">
-                <span class="text-danger" th:if="${#fields.hasErrors('foundationDate')}"
-                      th:errors="*{foundationDate}">Foundation Date Error</span>
-            </div>-->
+            <label for="address">Address</label>
+            <input class="form-control" type="text" th:field="*{name}"
+                   placeholder="Address" id="address">
+            <span class="text-danger" th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}">Address Error</span>
         </div>
+            <div class="form-group">
+                <label for="weight">Weight</label>
+                <input class="form-control" type="text" th:field="*{weight}" placeholder="Weight" id="weight">
+                <span class="text-danger" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">Name Error</span>
+            </div>
+           <div class="form-group">
+                <label for="sender">Sender</label>
+                <input class="form-control" type="text" th:field="*{sender}" placeholder="Name of sender" id="sender">
+                <span class="text-danger" th:if="${#fields.hasErrors('sender')}"
+                      th:errors="*{sender}">Sender Error</span>
+            </div>
+
+            <div class="form-group">
+                <label for="receiver">Receiver</label>
+                <input class="form-control" type="text" th:field="*{receiver}" placeholder="Name of receiver" id="receiver">
+                <span class="text-danger" th:if="${#fields.hasErrors('receiver')}"
+                      th:errors="*{receiver}">Receiver Error</span>
+            </div>
         <button type="submit" class="btn btn-primary">Save Shipment</button>
     </form>
 </div>

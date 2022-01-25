@@ -4,6 +4,7 @@ import com.example.project.data.entity.Address;
 import com.example.project.data.repository.AddressRepository;
 import com.example.project.services.AddressService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public List<Address> getAddresses() {
@@ -31,13 +33,15 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address updateAddress(long id, Address address) {
-        return null;
+        Address address1 = modelMapper.map(address, Address.class);
+        address1.setId(id);
+        return addressRepository.save(address);
     }
 
     @Override
-    public void deleteAddress(long id) {}
-
-
+    public void deleteAddress(long id) {
+        addressRepository.deleteById(id);
+    }
 
     @Override
     public List<Address> findAllByName(String name){

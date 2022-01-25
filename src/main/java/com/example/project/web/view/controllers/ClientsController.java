@@ -42,7 +42,7 @@ public class ClientsController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateClient(Model model, long id, Clients client) {
+    public String updateClient(Model model, @PathVariable long id, Clients client) {
         clientsService.updateClient(id, client);
         return "redirect:/clients";
     }
@@ -50,6 +50,6 @@ public class ClientsController {
     @GetMapping("/delete/{id}")
     public String processProgramForm(@PathVariable int id) {
         clientsService.deleteClient(id);
-        return "redirect:/addresses";
+        return "redirect:/clients";
     }
 }
