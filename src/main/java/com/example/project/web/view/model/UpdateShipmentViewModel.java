@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
@@ -32,6 +29,8 @@ public class UpdateShipmentViewModel {
     @Pattern(regexp = "^([A-Z]).*", message = "Address has to start with capital letter!")
     private Address address;
 
+    @Positive
+    @NotNull
     @Min(value = 0L, message = "The value must be positive")
     private double weight;
 }

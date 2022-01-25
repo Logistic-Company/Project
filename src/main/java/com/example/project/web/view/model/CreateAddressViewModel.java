@@ -1,7 +1,9 @@
 package com.example.project.web.view.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -9,6 +11,8 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@ToString
 public class CreateAddressViewModel {
 
     @NotBlank(message = "Address name cannot be blank!")

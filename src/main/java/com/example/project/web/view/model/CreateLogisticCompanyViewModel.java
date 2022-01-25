@@ -5,7 +5,9 @@ import com.example.project.data.entity.Office;
 import com.example.project.data.entity.OfficeEmployee;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
@@ -15,6 +17,8 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@ToString
 public class CreateLogisticCompanyViewModel {
 
     @NotBlank(message = "Logistic company name cannot be blank!")
@@ -22,10 +26,10 @@ public class CreateLogisticCompanyViewModel {
     @Pattern(regexp = "^([A-Z]).*", message = "Logistic company  has to start with capital letter!")
     private String name;
 
-    private Set<Office> offices;
+    /*private Set<Office> offices;
 
     private Set<OfficeEmployee> officeEmployees;
 
-    private Set<CourierEmployee> courierEmployees;
+    private Set<CourierEmployee> courierEmployees;*/
 
 }
