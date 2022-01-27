@@ -3,7 +3,6 @@ package com.example.project.services.implementations;
 import com.example.project.data.dto.CreateLogisticsCompanyDTO;
 import com.example.project.data.dto.LogisticsCompanyDTO;
 import com.example.project.data.dto.UpdateLogisticsCompanyDTO;
-import com.example.project.data.entity.Address;
 import com.example.project.data.entity.LogisticsCompany;
 import com.example.project.data.repository.LogisticsCompanyRepository;
 import com.example.project.services.LogisticsCompanyService;
