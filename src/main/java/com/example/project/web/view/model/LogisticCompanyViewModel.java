@@ -1,4 +1,4 @@
-package com.example.project.data.dto;
+package com.example.project.web.view.model;
 
 import com.example.project.data.entity.CourierEmployee;
 import com.example.project.data.entity.Office;
@@ -6,25 +6,16 @@ import com.example.project.data.entity.OfficeEmployee;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.OneToMany;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-public class LogisticsCompanyDTO {
+public class LogisticCompanyViewModel {
     private long id;
     private String name;
     private Set<Office> offices;
     private Set<OfficeEmployee> officeEmployees;
     private Set<CourierEmployee> courierEmployees;
-    private int deleted;
 }
