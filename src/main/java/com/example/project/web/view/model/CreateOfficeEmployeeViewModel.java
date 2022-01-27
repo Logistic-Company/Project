@@ -22,7 +22,7 @@ public class CreateOfficeEmployeeViewModel {
     @Pattern(regexp = "^([A-Z]).*", message = "Office employee has to start with capital letter!")
     private String courierName;
 
-    private LogisticsCompany logisticsCompany;
+    //private LogisticsCompany logisticsCompany;
 
-    private Office office;
+    //private Office office;
 }

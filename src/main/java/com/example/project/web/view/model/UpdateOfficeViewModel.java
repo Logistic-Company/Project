@@ -22,5 +22,7 @@ public class UpdateOfficeViewModel {
     @Pattern(regexp = "^([A-Z]).*", message = "Address has to start with capital letter!")
     private Address address;
 
+   // private LogisticsCompany logisticsCompany;
+
     private LogisticsCompany logisticsCompany;
 }

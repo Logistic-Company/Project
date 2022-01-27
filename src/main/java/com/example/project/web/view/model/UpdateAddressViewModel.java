@@ -22,4 +22,6 @@ public class UpdateAddressViewModel {
     private String address;
 
     private LogisticsCompany logisticsCompany;
+
+    //private LogisticsCompany logisticsCompany;
 }

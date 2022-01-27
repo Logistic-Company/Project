@@ -15,7 +15,7 @@
             <td th:text="${address.id}"></td>
             <td th:text="${address.address}"></td>
             <td><a class="btn btn-info" th:href="@{'/addresses/edit-address/'+${address.id}}">Edit</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/address/delete/'+${address.id}}">Delete</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/addresses/delete/'+${address.id}}">Delete</a></td>
         </tr>
     </table>
 </div>
