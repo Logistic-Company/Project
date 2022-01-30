@@ -16,10 +16,11 @@
         <th>Delete shipment</th>
 <tr th:each="shipment : ${shipments}">
     <td th:text="${shipment.id}"></td>
-    <td th:text="${shipment.name}"></td>
+    <td th:text="${shipment.address}"></td>
     <td th:text="${shipment.weight}"></td>
     <td th:text="${shipment.receiver}"></td>
     <td th:text="${shipment.sender}"></td>
+
 
     <td><a class="btn btn-info" th:href="@{'/shipments/edit-shipment/'+${shipment.id}}">Edit</a></td>
     <td><a class="btn btn-danger" th:href="@{'/shipments/delete/'+${shipment.id}}">Delete</a></td>

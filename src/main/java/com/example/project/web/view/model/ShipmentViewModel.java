@@ -13,6 +13,6 @@ public class ShipmentViewModel {
     private long id;
     private Clients sender;
     private Clients receiver;
-    private Address name;
+    private Address address;
     private double weight;
 }

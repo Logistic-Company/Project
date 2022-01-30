@@ -3,7 +3,6 @@ package com.example.project.web.view.controllers;
 import com.example.project.data.dto.AddressDTO;
 import com.example.project.data.dto.CreateAddressDTO;
 import com.example.project.data.dto.UpdateAddressDTO;
-import com.example.project.data.entity.Address;
 import com.example.project.services.AddressService;
 import com.example.project.web.view.model.AddressViewModel;
 import com.example.project.web.view.model.CreateAddressViewModel;

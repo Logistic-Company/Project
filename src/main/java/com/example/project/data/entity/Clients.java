@@ -15,6 +15,5 @@ import javax.persistence.Table;
 @Entity
 @Table(name="clients")
 public class Clients extends BaseEntity{
-
     private String name;
 }

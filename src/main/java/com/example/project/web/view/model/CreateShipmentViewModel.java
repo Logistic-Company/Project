@@ -7,26 +7,35 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+//@ToString
 public class CreateShipmentViewModel {
-    @NotBlank(message = "Sender name cannot be blank!")
-    @Size(min = 2, max = 20, message="Min length: 2, max length: 20")
-    @Pattern(regexp = "^([A-Z]).*", message = "Sender has to start with capital letter!")
+    //@NotBlank(message = "Sender name cannot be blank!")
+    @NotNull
+    //@Size(min = 2, max = 20, message="Min length: 2, max length: 20")
+    //@Pattern(regexp = "^([A-Z]).*", message = "Sender has to start with capital letter!")
     private Clients sender;
 
-    @NotBlank(message = "Receiver name cannot be blank!")
-    @Size(min = 2, max = 20, message="Min length: 2, max length: 20")
-    @Pattern(regexp = "^([A-Z]).*", message = "Receiver has to start with capital letter!")
+    //@NotBlank(message = "Receiver name cannot be blank!")
+    @NotNull
+    //@Size(min = 2, max = 20, message="Min length: 2, max length: 20")
+    //@Pattern(regexp = "^([A-Z]).*", message = "Receiver has to start with capital letter!")
     private Clients receiver;
 
-    @NotBlank(message = "Address name cannot be blank!")
-    @Size(min = 2, max = 20, message="Min length: 2, max length: 20")
-    @Pattern(regexp = "^([A-Z]).*", message = "Address has to start with capital letter!")
+    @NotNull
+    //@NotBlank(message = "Address name cannot be blank!")
+    //@Size(min = 2, max = 20, message="Min length: 2, max length: 20")
+    //@Pattern(regexp = "^([A-Z]).*", message = "Address has to start with capital letter!")
     private Address address;
 
     @NotNull

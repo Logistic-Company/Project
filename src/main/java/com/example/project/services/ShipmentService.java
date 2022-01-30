@@ -1,17 +1,20 @@
 package com.example.project.services;
 
+import com.example.project.data.dto.CreateShipmentDTO;
+import com.example.project.data.dto.ShipmentDTO;
+import com.example.project.data.dto.UpdateShipmentDTO;
 import com.example.project.data.entity.Shipment;
 import java.util.List;
 
 public interface ShipmentService {
 
-    List<Shipment> getShipments();
+    List<ShipmentDTO> getShipments();
 
-    Shipment getShipment(long id);
+    ShipmentDTO getShipment(long id);
 
-    Shipment create(Shipment shipment);
+    Shipment create(CreateShipmentDTO createShipmentDTO);
 
-    Shipment updateShipment(long id, Shipment shipment);
+    Shipment updateShipment(long id, UpdateShipmentDTO updateShipmentDTO);
 
     void deleteShipment(long id);
 }

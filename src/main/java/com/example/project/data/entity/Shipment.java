@@ -28,7 +28,7 @@ public class Shipment extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name="address_for_sending")
-    private Address name;
+    private Address address;
 
     @JoinColumn(name="weight")
     private double weight;

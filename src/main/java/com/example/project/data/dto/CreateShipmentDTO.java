@@ -14,6 +14,6 @@ import lombok.ToString;
 public class CreateShipmentDTO {
     private Clients sender;
     private Clients receiver;
-    private Address name;
+    private Address address;
     private double weight;
 }
