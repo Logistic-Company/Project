@@ -1,49 +1,67 @@
 package com.example.project.web.view.controllers;
 
+import com.example.project.data.dto.*;
 import com.example.project.data.entity.Clients;
 import com.example.project.services.ClientsService;
+import com.example.project.web.view.model.*;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
 @RequestMapping("/clients")
 public class ClientsController {
     private ClientsService clientsService;
+    private final ModelMapper modelMapper;
 
     @GetMapping
     public String getClients(Model model) {
-        final List<Clients> clients = clientsService.getClients();
+        final List<ClientsViewModel> clients = clientsService.getClients()
+                .stream().map(this::convertToClientsViewModel)
+                .collect(Collectors.toList());
         model.addAttribute("clients", clients);
         return "/clients/clients.html";
     }
 
     @GetMapping("/create-client")
     public String showCreateClientsForm(Model model) {
-        model.addAttribute("client", new Clients());
+        model.addAttribute("client", new CreateClientsViewModel());
         return "/clients/create-client";
     }
 
     @PostMapping("/create")
-    public String createClient(@Valid @ModelAttribute Clients client) {
-        clientsService.create(client);
+    public String createClient(@Valid @ModelAttribute("client")
+                                           CreateClientsViewModel client,
+                               BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "clients/create-client";
+        }
+        clientsService.create(modelMapper.map(client, CreateClientsDTO.class));
         return "redirect:/clients";
     }
 
     @GetMapping("/edit-client/{id}")
-    public String showEditAddressForm(Model model, @PathVariable Long id) {
-        model.addAttribute("client", clientsService.getClient(id));
+    public String showEditClientsForm(Model model, @PathVariable Long id) {
+        model.addAttribute("client", modelMapper.map(clientsService.getClient(id),
+                UpdateClientsViewModel.class));
         return "/clients/edit-client";
     }
 
     @PostMapping("/update/{id}")
-    public String updateClient(Model model, @PathVariable long id, Clients client) {
-        clientsService.updateClient(id, client);
+    public String updateClient(@PathVariable long id, @Valid @ModelAttribute("client")
+            UpdateClientsViewModel client, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "/clients/edit-client";
+        }
+        clientsService.updateClient(id, modelMapper.map(client, UpdateClientsDTO.class));
         return "redirect:/clients";
     }
 
@@ -51,5 +69,9 @@ public class ClientsController {
     public String processProgramForm(@PathVariable int id) {
         clientsService.deleteClient(id);
         return "redirect:/clients";
+    }
+
+    private ClientsViewModel convertToClientsViewModel(ClientsDTO clientsDTO) {
+        return modelMapper.map(clientsDTO, ClientsViewModel.class);
     }
 }

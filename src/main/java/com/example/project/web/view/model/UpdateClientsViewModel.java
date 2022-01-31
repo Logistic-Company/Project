@@ -17,5 +17,5 @@ public class UpdateClientsViewModel {
     @NotBlank(message = "Client name cannot be blank!")
     @Size(min = 2, max = 20, message="Min length: 2, max length: 20")
     @Pattern(regexp = "^([A-Z]).*", message = "Client name  has to start with capital letter!")
-    private String clientName;
+    private String name;
 }
