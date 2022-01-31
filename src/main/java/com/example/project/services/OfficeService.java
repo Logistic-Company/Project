@@ -1,6 +1,9 @@
 package com.example.project.services;
 
+import com.example.project.data.dto.CreateOfficeDTO;
 import com.example.project.data.entity.Office;
+
+import javax.validation.Valid;
 import java.util.List;
 
 public interface OfficeService {
@@ -9,7 +12,11 @@ public interface OfficeService {
 
     Office getOffice(long id);
 
-    Office create(Office office);
+    //RABOTI
+//    Office create(Office office);
+
+    //DTO TODO:
+    Office create(@Valid CreateOfficeDTO createOfficeDTO);
 
     Office updateOffice(long id, Office office);
 
