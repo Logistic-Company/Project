@@ -23,6 +23,8 @@
                 <th>E-mail</th>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Roles</th>
+                <!--<th>Edit</th>-->
             </tr>
             </thead>
             <tbody>
@@ -31,6 +33,9 @@
                 <td th:text="${user.email}">E-mail</td>
                 <td th:text="${user.firstName}">First Name</td>
                 <td th:text="${user.lastName}">Last Name</td>
+                <td th:text="${user.roles}">Roles</td>
+                <!--<td><a th:href="@{'users/edit-user/' + ${user.id}}">Edit</a></td>-->
+
             </tr>
             </tbody>
         </table>

@@ -33,11 +33,6 @@ public class OfficeEmployeeApiController {
         return officeEmployeeService.create(officeEmployee);
     }
 
-    //@RequestMapping(method = RequestMethod.POST, value = "/api/logistics_company")
-    //public LogisticsCompany createLogisticsCompany(LogisticsCompany logisticsCompany) {
-    //return logisticsCompanyService.create(logisticsCompany);
-    //}
-
     @RequestMapping(method = RequestMethod.PUT, value = "/api/office_employee/{id}")
     public OfficeEmployee updateOfficeEmployee(@PathVariable("id") long id, @RequestBody OfficeEmployee officeEmployee) {
         return officeEmployeeService.updateOfficeEmployee(id, officeEmployee);
@@ -48,28 +43,4 @@ public class OfficeEmployeeApiController {
         officeEmployeeService.deleteOfficeEmployee(id);
     }
 
-//    @RequestMapping("/api/schools/max-students/{maxStudents}")
-//    public List<School> getSchoolsByMaxNumberOfStudents(@PathVariable int maxStudents) {
-//        return schoolService.getSchoolsByMaxNumberOfStudents(maxStudents);
-//    }
-//    @RequestMapping("/api/schools/names/{name}")
-//    public List<School> getSchoolsByMaxNumberOfStudents(@PathVariable String name) {
-//        return schoolService.getSchoolsByName(name);
-//    }
-//
-//    @RequestMapping("/api/schools/names/{name}/max-students/{maxStudents}")
-//    public List<School> getSchoolsByMaxNumberOfStudents(@PathVariable String name, @PathVariable int maxStudents) {
-//        return schoolService.getSchoolsByNameAndMaxNumberOfStudents(name, maxStudents);
-//    }
-//
-//    @RequestMapping("/api/highschools")
-//    public List<School> getHighSchools() {
-//        return schoolService.getAllHighSchools();
-//    }
-//
-//    @RequestMapping("/api/schools/{id}/teachers")
-//    public List<Teacher> getSchoolTeachers(@PathVariable long id) {
-//        return schoolService.getAllTeachersBySchoolId(id);
-//    }
-//
 }

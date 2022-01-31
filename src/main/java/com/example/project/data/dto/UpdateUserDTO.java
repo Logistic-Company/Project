@@ -4,14 +4,15 @@ import com.example.project.data.entity.Roles;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Set;
-
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDTO {
+@ToString
+public class UpdateUserDTO {
     private long id;
     private String email;
     private String password;

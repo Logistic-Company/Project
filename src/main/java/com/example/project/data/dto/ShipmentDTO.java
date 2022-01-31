@@ -14,7 +14,7 @@ public class ShipmentDTO {
     private long id;
     private Clients sender;
     private Clients receiver;
-    private Address name;
+    private Address address;
     private double weight;
     private int deleted;
 }

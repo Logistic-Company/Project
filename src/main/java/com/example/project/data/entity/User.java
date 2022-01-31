@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,7 +24,17 @@ public class User extends BaseEntity{
     private String firstName;
     @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
-    /*@ManyToOne
-    @JoinColumn(name = "roles_id", nullable = false)
-    private Roles role;*/
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Roles> roles = new HashSet<>();
+
+    public void addRole(Roles role) {
+        this.roles.add(role);
+    }
+
 }
