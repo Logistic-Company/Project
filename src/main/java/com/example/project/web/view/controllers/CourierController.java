@@ -1,15 +1,26 @@
 package com.example.project.web.view.controllers;
 
+import com.example.project.data.dto.CourierEmployeeDTO;
+import com.example.project.data.dto.CreateCourierEmployeeDTO;
+import com.example.project.data.dto.LogisticsCompanyDTO;
+import com.example.project.data.dto.UpdateCourierEmployeeDTO;
 import com.example.project.data.entity.Address;
 import com.example.project.data.entity.CourierEmployee;
 import com.example.project.services.CourierEmployeeService;
+import com.example.project.web.view.model.CourierEmployeeViewModel;
+import com.example.project.web.view.model.CreateCourierEmployeeViewModel;
+import com.example.project.web.view.model.LogisticCompanyViewModel;
+import com.example.project.web.view.model.UpdateCourierEmployeeViewModel;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -17,35 +28,48 @@ import java.util.List;
 public class CourierController {
 
     private CourierEmployeeService courierEmployeeService;
+    private final ModelMapper modelMapper;
 
     @GetMapping
     public String getCourierEmployees(Model model){
-        final List<CourierEmployee> courierEmployees = courierEmployeeService.getCourierEmployees();
+        final List<CourierEmployeeViewModel> courierEmployees = courierEmployeeService.getCourierEmployees()
+                .stream().map(this::convertToCourierEmployeeViewModel)
+                .collect(Collectors.toList());
         model.addAttribute("courierEmployees", courierEmployees);
         return "/courierEmployees/courierEmployees.html";
     }
 
     @GetMapping("/create-courierEmployee")
     public String showCreateCourierEmployeeForm(Model model){
-        model.addAttribute("courierEmployee", new Address());
+        model.addAttribute("courierEmployee", new CreateCourierEmployeeViewModel());
         return "/courierEmployees/create-courierEmployee";
     }
 
     @PostMapping("/create")
-    public String createCourierEmployee(@Valid @ModelAttribute CourierEmployee courierEmployee){
-        courierEmployeeService.create(courierEmployee);
+    public String createCourierEmployee(@Valid @ModelAttribute("courierEmployee")
+                                                CreateCourierEmployeeViewModel courierEmployee,
+                                        BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "courierEmployees/create-courierEmployee";
+        }
+        courierEmployeeService.create(modelMapper.map(courierEmployee, CreateCourierEmployeeDTO.class));
         return "redirect:/courierEmployees";
     }
 
     @GetMapping("/edit-courierEmployee/{id}")
     public String showEditCourierEmployeeForm(Model model, @PathVariable Long id){
-        model.addAttribute("courierEmployee", courierEmployeeService.getCourierEmployee(id));
+        model.addAttribute("courierEmployee", modelMapper.map(courierEmployeeService.getCourierEmployee(id),
+                UpdateCourierEmployeeViewModel.class));
         return "/courierEmployees/edit-courierEmployee";
     }
 
     @PostMapping("/update/{id}")
-    public String updateCourierEmployee(Model model, @PathVariable long id, CourierEmployee courierEmployee){
-        courierEmployeeService.updateCourierEmployee(id, courierEmployee);
+    public String updateCourierEmployee(@PathVariable long id, @Valid @ModelAttribute("courierEmployee")
+            UpdateCourierEmployeeViewModel courierEmployee, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "courierEmployees/edit-courierEmployee";
+        }
+        courierEmployeeService.updateCourierEmployee(id, modelMapper.map(courierEmployee, UpdateCourierEmployeeDTO.class));
         return "redirect:/courierEmployees";
     }
 
@@ -53,5 +77,9 @@ public class CourierController {
     public String processProgramForm(@PathVariable int id){
         courierEmployeeService.deleteCourierEmployee(id);
         return "redirect:/courierEmployees";
+    }
+
+    private CourierEmployeeViewModel convertToCourierEmployeeViewModel(CourierEmployeeDTO courierEmployeeDTO) {
+        return modelMapper.map(courierEmployeeDTO, CourierEmployeeViewModel.class);
     }
 }

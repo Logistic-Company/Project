@@ -19,7 +19,7 @@ public class UpdateCourierEmployeeViewModel {
     @NotBlank(message = "Courier name cannot be blank!")
     @Size(min = 2, max = 20, message="Min length: 2, max length: 20")
     @Pattern(regexp = "^([A-Z]).*", message = "Courier name  has to start with capital letter!")
-    private String courierName;
+    private String name;
 
     //private LogisticsCompany logisticsCompany;
 }

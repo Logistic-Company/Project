@@ -16,7 +16,7 @@
             <td th:text="${courierEmployee.id}"></td>
             <td th:text="${courierEmployee.name}"></td>
             <td><a class="btn btn-info" th:href="@{'/courierEmployees/edit-courierEmployee/'+${courierEmployee.id}}">Edit</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/courierEmployee/delete/'+${courierEmployee.id}}">Delete</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/courierEmployees/delete/'+${courierEmployee.id}}">Delete</a></td>
         </tr>
     </table>
 </div>

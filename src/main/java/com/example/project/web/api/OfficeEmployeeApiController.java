@@ -1,8 +1,15 @@
 package com.example.project.web.api;
 
+import com.example.project.data.dto.CreateOfficeEmployeeDTO;
+import com.example.project.data.dto.OfficeEmployeeDTO;
+import com.example.project.data.dto.UpdateOfficeEmployeeDTO;
 import com.example.project.data.entity.OfficeEmployee;
 import com.example.project.services.OfficeEmployeeService;
+import com.example.project.web.view.model.CreateOfficeEmployeeViewModel;
+import com.example.project.web.view.model.UpdateCourierEmployeeViewModel;
+import com.example.project.web.view.model.UpdateOfficeEmployeeViewModel;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,25 +19,22 @@ import java.util.List;
 public class OfficeEmployeeApiController {
 
     private final OfficeEmployeeService officeEmployeeService;
-
-    /*public OfficeEmployeeApiController(OfficeEmployeeService officeEmployeeService) {
-        this.officeEmployeeService = officeEmployeeService;
-    }*/
+    private final ModelMapper modelMapper;
 
     //private final ModelMapper modelMapper;
     @GetMapping(value = "/api/office_employee")
-    public List<OfficeEmployee> getOfficeEmployees() {
+    public List<OfficeEmployeeDTO> getOfficeEmployees() {
         return officeEmployeeService.getOfficeEmployees();
     }
 
     @RequestMapping("/api/office_employee/{id}")
-    public OfficeEmployee getOfficeEmployee(@PathVariable("id") int id) {
+    public OfficeEmployeeDTO getOfficeEmployee(@PathVariable("id") int id) {
         return officeEmployeeService.getOfficeEmployee(id);
     }
 
     @PostMapping(value = "/api/office_employee")
-    public OfficeEmployee createOfficeEmployee(@RequestBody OfficeEmployee officeEmployee) {
-        return officeEmployeeService.create(officeEmployee);
+    public OfficeEmployee createOfficeEmployee(@RequestBody CreateOfficeEmployeeViewModel officeEmployee) {
+        return officeEmployeeService.create(modelMapper.map(officeEmployee, CreateOfficeEmployeeDTO.class));
     }
 
     //@RequestMapping(method = RequestMethod.POST, value = "/api/logistics_company")
@@ -39,8 +43,8 @@ public class OfficeEmployeeApiController {
     //}
 
     @RequestMapping(method = RequestMethod.PUT, value = "/api/office_employee/{id}")
-    public OfficeEmployee updateOfficeEmployee(@PathVariable("id") long id, @RequestBody OfficeEmployee officeEmployee) {
-        return officeEmployeeService.updateOfficeEmployee(id, officeEmployee);
+    public OfficeEmployee updateOfficeEmployee(@PathVariable("id") long id, @RequestBody UpdateOfficeEmployeeViewModel officeEmployee) {
+        return officeEmployeeService.updateOfficeEmployee(id, modelMapper.map(officeEmployee, UpdateOfficeEmployeeDTO.class));
     }
 
     @DeleteMapping(value = "/api/office_employee/{id}")
@@ -48,28 +52,4 @@ public class OfficeEmployeeApiController {
         officeEmployeeService.deleteOfficeEmployee(id);
     }
 
-//    @RequestMapping("/api/schools/max-students/{maxStudents}")
-//    public List<School> getSchoolsByMaxNumberOfStudents(@PathVariable int maxStudents) {
-//        return schoolService.getSchoolsByMaxNumberOfStudents(maxStudents);
-//    }
-//    @RequestMapping("/api/schools/names/{name}")
-//    public List<School> getSchoolsByMaxNumberOfStudents(@PathVariable String name) {
-//        return schoolService.getSchoolsByName(name);
-//    }
-//
-//    @RequestMapping("/api/schools/names/{name}/max-students/{maxStudents}")
-//    public List<School> getSchoolsByMaxNumberOfStudents(@PathVariable String name, @PathVariable int maxStudents) {
-//        return schoolService.getSchoolsByNameAndMaxNumberOfStudents(name, maxStudents);
-//    }
-//
-//    @RequestMapping("/api/highschools")
-//    public List<School> getHighSchools() {
-//        return schoolService.getAllHighSchools();
-//    }
-//
-//    @RequestMapping("/api/schools/{id}/teachers")
-//    public List<Teacher> getSchoolTeachers(@PathVariable long id) {
-//        return schoolService.getAllTeachersBySchoolId(id);
-//    }
-//
 }
