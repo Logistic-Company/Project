@@ -4,12 +4,14 @@ import com.example.project.data.dto.*;
 import com.example.project.data.entity.Roles;
 import com.example.project.services.RoleService;
 import com.example.project.web.view.model.CreateRoleViewModel;
+import com.example.project.web.view.model.RoleViewModel;
 import com.example.project.web.view.model.UpdateRoleViewModel;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -41,4 +43,5 @@ public class RolesApiController {
     public void deleteRole(@PathVariable long id) {
         roleService.deleteRole(id);
     }
+    
 }

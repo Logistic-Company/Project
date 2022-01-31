@@ -33,6 +33,18 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public RoleDTO getRoleByName(String name) {
+        return modelMapper.map(name, RoleDTO.class);
+    }
+
+    @Override
+    public List<RoleDTO> getRolesByName(String name) {
+        return roleRepository.findAllByName(name).stream()
+                .map(this::convertToRoleDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Roles create(CreateRoleDTO createRoleDTO) {
         return roleRepository.save(modelMapper.map(createRoleDTO, Roles.class));
     }

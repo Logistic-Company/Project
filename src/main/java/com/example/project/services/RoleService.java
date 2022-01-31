@@ -13,6 +13,10 @@ public interface RoleService {
 
     RoleDTO getRole(long id);
 
+    RoleDTO getRoleByName(String name);
+
+    List<RoleDTO> getRolesByName(String name);
+
     Roles create(CreateRoleDTO createRoleDTO);
 
     Roles updateRole(long id, UpdateRoleDTO updateRoleDTO);

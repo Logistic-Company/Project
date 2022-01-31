@@ -2,6 +2,7 @@ package com.example.project.web.view.controllers;
 
 import com.example.project.data.dto.*;
 import com.example.project.data.entity.User;
+import com.example.project.data.repository.UserRepository;
 import com.example.project.services.implementations.UserServiceImpl;
 import com.example.project.web.view.model.*;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ import javax.validation.Valid;
 public class UserController {
     private final ModelMapper modelMapper;
     private UserServiceImpl service;
+    private UserRepository userRepository;
 
     /*@GetMapping
     public String getUsers(Model model){
@@ -88,6 +90,7 @@ public class UserController {
         service.save(user);
         return "redirect:/users";
     }
+
 
 
 

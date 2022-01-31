@@ -1,6 +1,7 @@
 package com.example.project.services;
 
 import com.example.project.data.dto.*;
+import com.example.project.data.entity.Roles;
 import com.example.project.data.entity.Shipment;
 import com.example.project.data.entity.User;
 
@@ -19,4 +20,7 @@ public interface UserService {
     User updateUser(long id, UpdateUserDTO updateUserDTO);
 
     void deleteUser(long id);
+
+    //List<RoleDTO> listRoles();
+    List<Roles> listRoles();
 }

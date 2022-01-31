@@ -41,7 +41,7 @@ public class UserApiController {
     }
 
     @DeleteMapping(value = "/api/user/{id}")
-    public void deleteShipment(@PathVariable long id) {
+    public void deleteUser(@PathVariable long id) {
         service.deleteUser(id);
     }
 }

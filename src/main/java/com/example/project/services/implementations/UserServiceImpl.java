@@ -51,13 +51,9 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
     }
 
-    public List<RoleDTO> listRoles() {
-        //return roleRepo.findAll();
-        return roleRepo.findAll()
-                .stream().map(this::convertToRoleDTO)
-                .collect(Collectors.toList());
+    public List<Roles> listRoles() {
+        return roleRepo.findAll();
     }
-
 
     @Override
     public User create(CreateUserDTO createUserDTO) {
