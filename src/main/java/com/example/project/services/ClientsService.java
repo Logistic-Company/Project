@@ -1,18 +1,20 @@
 package com.example.project.services;
 
-import com.example.project.data.entity.Address;
+import com.example.project.data.dto.ClientsDTO;
+import com.example.project.data.dto.CreateClientsDTO;
+import com.example.project.data.dto.UpdateClientsDTO;
 import com.example.project.data.entity.Clients;
 import java.util.List;
 
 public interface ClientsService {
 
-    List<Clients> getClients();
+    List<ClientsDTO> getClients();
 
-    Clients getClient(long id);
+    ClientsDTO getClient(long id);
 
-    Clients create(Clients clients);
+    Clients create(CreateClientsDTO createClientsDTO);
 
-    Clients updateClient(long id, Clients clients);
+    Clients updateClient(long id, UpdateClientsDTO updateClientsDTO);
 
     void deleteClient(long id);
 
