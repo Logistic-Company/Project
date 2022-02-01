@@ -1,10 +1,14 @@
 package com.example.project.web.api;
 
+import com.example.project.data.dto.CreateOfficeDTO;
 import com.example.project.data.entity.Office;
 import com.example.project.services.OfficeService;
+import com.example.project.web.view.model.CreateOfficeViewModel;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -12,6 +16,7 @@ import java.util.List;
 public class OfficeApiController {
 
     private final OfficeService officeService;
+    private final ModelMapper modelMapper;
 
     //private final ModelMapper modelMapper;
     @GetMapping(value = "/api/office")
@@ -24,9 +29,17 @@ public class OfficeApiController {
         return officeService.getOffice(id);
     }
 
+    //RABOTI
+//    @PostMapping(value = "/api/office")
+//    public Office createOffice(@RequestBody Office office) {
+//        return officeService.create(office);
+//    }
+
+
+    //DTO TODO:
     @PostMapping(value = "/api/office")
-    public Office createOffice(@RequestBody Office office) {
-        return officeService.create(office);
+    public Office createOffice(@RequestBody @Valid CreateOfficeViewModel office) {
+        return officeService.create(modelMapper.map(office, CreateOfficeDTO.class));
     }
 
     //@RequestMapping(method = RequestMethod.POST, value = "/api/logistics_company")

@@ -20,4 +20,9 @@ public interface ClientsService {
 
     List<Clients>findAllByName(String name);
 
+    // vsichkite promeni
+
+
+    //aidiii
+
 }

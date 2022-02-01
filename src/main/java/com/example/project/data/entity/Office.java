@@ -16,6 +16,7 @@ import java.util.Set;
 @Table(name="office")
 public class Office extends BaseEntity{
 
+    private String name;
     @OneToOne
     private Address address;
 
