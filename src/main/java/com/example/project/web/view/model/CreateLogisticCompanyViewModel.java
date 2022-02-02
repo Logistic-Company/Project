@@ -1,5 +1,6 @@
 package com.example.project.web.view.model;
 
+import com.example.project.data.entity.Clients;
 import com.example.project.data.entity.CourierEmployee;
 import com.example.project.data.entity.Office;
 import com.example.project.data.entity.OfficeEmployee;
@@ -31,5 +32,7 @@ public class CreateLogisticCompanyViewModel {
     private Set<OfficeEmployee> officeEmployees;
 
     private Set<CourierEmployee> courierEmployees;*/
+
+    private Set<Clients> clients;
 
 }

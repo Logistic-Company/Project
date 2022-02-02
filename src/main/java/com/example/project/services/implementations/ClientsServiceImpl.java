@@ -4,10 +4,12 @@ import com.example.project.data.dto.ClientsDTO;
 import com.example.project.data.dto.CreateClientsDTO;
 import com.example.project.data.dto.LogisticsCompanyDTO;
 import com.example.project.data.dto.UpdateClientsDTO;
-import com.example.project.data.entity.Address;
 import com.example.project.data.entity.Clients;
 import com.example.project.data.entity.LogisticsCompany;
+import com.example.project.data.entity.Roles;
+import com.example.project.data.entity.User;
 import com.example.project.data.repository.ClientsRepository;
+import com.example.project.data.repository.LogisticsCompanyRepository;
 import com.example.project.services.ClientsService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -21,6 +23,8 @@ import java.util.stream.Collectors;
 public class ClientsServiceImpl implements ClientsService {
     
     private final ClientsRepository clientsRepository;
+    private final LogisticsCompanyRepository logisticsCompanyRepository;
+
     private final ModelMapper modelMapper;
 
     @Override
@@ -62,5 +66,27 @@ public class ClientsServiceImpl implements ClientsService {
 
     private ClientsDTO convertToClientsDTO(Clients clients) {
         return modelMapper.map(clients, ClientsDTO.class);
+    }
+
+    private LogisticsCompany convertToCompanies(LogisticsCompany logisticsCompany) {
+        return modelMapper.map(logisticsCompany, LogisticsCompany.class);
+    }
+
+    @Override
+    public List<LogisticsCompany> listLogisticCompanies() {
+        return logisticsCompanyRepository.findAll().stream()
+                .map(this::convertToCompanies)
+                .collect(Collectors.toList());
+    }
+
+   /* public void registerDefaultCompany(LogisticsCompany logisticsCompany) {
+        Clients clients = clientsRepository.getById(1L);
+        logisticsCompany.addClient(clients);
+        clientsRepository.save(clients);
+    }*/
+
+    @Override
+    public void save(Clients clients) {
+        clientsRepository.save(clients);
     }
 }

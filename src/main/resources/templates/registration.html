@@ -40,7 +40,7 @@
         <div class="form-group">
         <label class="roles">Roles: </label></br>
         <th:block th:each="role: ${listRoles}">
-            <input type="checkbox" th:field="*{roles}"
+            <input type="radio" th:field="*{roles}"
                    th:text="${role.name}" th:value="${role.id}" class="m-2" />
         </th:block>
     </div>

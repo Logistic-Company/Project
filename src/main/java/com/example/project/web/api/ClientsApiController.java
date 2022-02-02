@@ -37,11 +37,6 @@ public class ClientsApiController {
         return clientsService.create(modelMapper.map(clients, CreateClientsDTO.class));
     }
 
-    //@RequestMapping(method = RequestMethod.POST, value = "/api/logistics_company")
-    //public LogisticsCompany createLogisticsCompany(LogisticsCompany logisticsCompany) {
-    //return logisticsCompanyService.create(logisticsCompany);
-    //}
-
     @RequestMapping(method = RequestMethod.PUT, value = "/api/clients/{id}")
     public Clients updateClient(@PathVariable("id") long id, @RequestBody UpdateClientsViewModel clients) {
         return clientsService.updateClient(id, modelMapper.map(clients, UpdateClientsDTO.class));
@@ -52,9 +47,5 @@ public class ClientsApiController {
         clientsService.deleteClient(id);
     }
 
-//    @RequestMapping("/api/clients/names/{name}")
-//    public List<Clients> findAllByName(@PathVariable String name) {
-//        return clientsService.findAllByName(name);
-//    }
 
 }

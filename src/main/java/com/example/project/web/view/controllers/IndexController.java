@@ -76,7 +76,7 @@ public class IndexController {
         List<UserDTO> listUsers = service.listAll();
         model.addAttribute("listUsers", listUsers);
         return "users";
-        }
+    }
 
         @GetMapping("users/edit-user/{id}")
         public String editUser(@PathVariable("id") long id, Model model) {

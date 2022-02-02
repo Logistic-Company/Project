@@ -5,8 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,4 +16,16 @@ import javax.persistence.Table;
 @Table(name="clients")
 public class Clients extends BaseEntity{
     private String name;
+
+    @ManyToMany
+    @JoinTable(
+            name = "logistics_companies_clients",
+            joinColumns = @JoinColumn(name = "logistics_company_id"),
+            inverseJoinColumns = @JoinColumn(name = "clients_id")
+    )
+    private Set<LogisticsCompany> logisticsCompanies;
+
+    /*public void addClient(Clients clients) {
+        this.clients.add(clients);
+    }*/
 }

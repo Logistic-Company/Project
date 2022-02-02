@@ -2,7 +2,9 @@ package com.example.project.config;
 
 import javax.sql.DataSource;
 
+import com.example.project.services.UserService;
 import com.example.project.services.implementations.CustomUserDetailsService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
