@@ -30,15 +30,15 @@ public class LogisticsCompany extends BaseEntity{
     @JsonIgnoreProperties("logisticsCompany")
     private Set<CourierEmployee> courierEmployees;
 
-    /*@ManyToMany
-    @JoinTable(
+    /*@JoinTable(
             name = "logistics_companies_clients",
             joinColumns = @JoinColumn(name = "logistics_company_id"),
             inverseJoinColumns = @JoinColumn(name = "clients_id")
-    )
-    private Set<Clients> clients;
+    )*/
+//    @ManyToMany
+//    private Set<Clients> clients;
 
-    public void addClient(Clients clients) {
+    /*public void addClient(Clients clients) {
         this.clients.add(clients);
     }*/
 }

@@ -79,7 +79,7 @@ public class ClientsServiceImpl implements ClientsService {
                 .collect(Collectors.toList());
     }
 
-   /* public void registerDefaultCompany(LogisticsCompany logisticsCompany) {
+    /* public void registerDefaultCompany(LogisticsCompany logisticsCompany) {
         Clients clients = clientsRepository.getById(1L);
         logisticsCompany.addClient(clients);
         clientsRepository.save(clients);

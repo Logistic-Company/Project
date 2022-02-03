@@ -1,5 +1,6 @@
 package com.example.project.data.repository;
 
+import com.example.project.data.entity.Clients;
 import com.example.project.data.entity.CourierEmployee;
 import com.example.project.data.entity.LogisticsCompany;
 import com.example.project.data.entity.User;
