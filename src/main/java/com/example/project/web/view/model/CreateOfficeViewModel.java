@@ -17,12 +17,15 @@ import javax.validation.constraints.Size;
 @ToString
 public class CreateOfficeViewModel {
 
-    @NotBlank(message = "Address name cannot be blank!")
-    @Size(min = 2, max = 20, message="Min length: 2, max length: 20")
-    @Pattern(regexp = "^([A-Z]).*", message = "Address has to start with capital letter!")
+    //    @NotBlank(message = "Address name cannot be blank!")
+//    @Size(min = 2, max = 20, message="Min length: 2, max length: 20")
+//    @Pattern(regexp = "^([A-Z]).*", message = "Address has to start with capital letter!")
     private Address address;
 
-    //private LogisticsCompany logisticsCompany;
+    //    @NotBlank(message = "Name cannot be blank!")
+    @Size(min = 2, max = 20, message="Min length: 2, max length: 20")
+    private String name;
 
+    //    @NotBlank(message = "Company cannot be blank!")
     private LogisticsCompany logisticsCompany;
 }
