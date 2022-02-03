@@ -1,9 +1,13 @@
 package com.example.project.web.view.controllers;
 
 import com.example.project.data.dto.*;
+import com.example.project.data.entity.Clients;
 import com.example.project.data.entity.LogisticsCompany;
+import com.example.project.data.entity.Roles;
 import com.example.project.services.ClientsService;
 import com.example.project.services.LogisticsCompanyService;
+import com.example.project.services.implementations.LogisticsCompanyServiceImpl;
+import com.example.project.web.view.model.ClientsViewModel;
 import com.example.project.web.view.model.CreateLogisticCompanyViewModel;
 import com.example.project.web.view.model.LogisticCompanyViewModel;
 import com.example.project.web.view.model.UpdateLogisticCompanyViewModel;
@@ -25,6 +29,7 @@ public class LogisticCompanyController {
 
     private LogisticsCompanyService logisticsCompanyService;
     private ClientsService clientsService;
+    private LogisticsCompanyServiceImpl logisticsCompanyServiceImpl;
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -36,14 +41,13 @@ public class LogisticCompanyController {
         return "/logisticCompanies/logisticCompanies.html";
     }
 
-    @GetMapping("select")
+    @GetMapping("/select")
     public String getLogisticsCompany2(Model model){
         final List<LogisticCompanyViewModel> logisticsCompanies = logisticsCompanyService.getLogisticsCompanies()
                 .stream().map(this::convertToLogisticsCompanyViewModel)
                 .collect(Collectors.toList());
         model.addAttribute("logisticCompanies", logisticsCompanies);
-        return "/logisticCompanies/select";
-
+        return "/logisticCompanies/selectCompany";
     }
 
     @GetMapping("/create-logisticCompany")
@@ -62,8 +66,6 @@ public class LogisticCompanyController {
         logisticsCompanyService.create(modelMapper.map(logisticsCompany, CreateLogisticsCompanyDTO.class));
         return "redirect:/logisticCompanies";
     }
-
-    
 
     @GetMapping("/edit-logisticCompany/{id}")
     public String showEditLogisticCompanyForm(Model model, @PathVariable Long id){
@@ -92,11 +94,13 @@ public class LogisticCompanyController {
         return modelMapper.map(logisticsCompanyDTO, LogisticCompanyViewModel.class);
     }
 
-    @GetMapping("/referenceForCompanies")
-    public String getClientsList(Model model) {
-        /**List<User> userList = service.listAll();*/
+    @GetMapping("/referenceForCompaniesForm/{id}")
+    public String getClientsList(@PathVariable("id") long id, Model model) {
+        LogisticsCompanyDTO logisticsCompany = logisticsCompanyService.getLogisticCompany(id);
+        model.addAttribute("logisticCompany", logisticsCompany);
         List<ClientsDTO> clientsList = clientsService.getClients();
         model.addAttribute("clientsList", clientsList);
         return "logisticCompanies/referenceForClients";
     }
+
 }

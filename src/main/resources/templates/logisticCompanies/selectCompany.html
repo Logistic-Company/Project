@@ -2,27 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head"></head>
 <body>
-<header th:replace="fragments :: header"></header>
 <h4 th:if="${logisticCompanies.size()>0}" th:text="'Select a company to see all of it clients'"> </h4>
 <div class=" col-6">
     <h3 th:unless="${logisticCompanies} and ${logisticCompanies.size()}">There are no logisticCompanies!</h3>
-    <!--<table th:if="${logisticCompanies.size()>0}" class="table table-hover">
-        <th>Id</th>
-        <th>Name</th>
-        <tr th:each="logisticCompany : ${logisticCompanies}">
-            <td th:text="${logisticCompany.name}"></td>
-        </tr>
-    </table>-->
     <div class="form-group">
         <label class="companies">Logistic Companies: </label></br>
         <th:block th:each="logisticCompany: ${logisticCompanies}">
-            <input type="radio" th:field="*{logisticCompanies}"
+            <input type="hidden" th:field="*{logisticCompanies}"
                    th:text="${logisticCompany.name}" th:value="${logisticCompany.id}" class="m-2" />
+            <a class="btn btn-info" th:href="@{'/logisticCompanies/referenceForCompaniesForm/' + ${logisticCompany.id}}">Select</a>
         </th:block>
-    </div>
-
-    <div>
-        <button type="submit" class="btn btn-primary">Select</button>
     </div>
 </div>
 <footer th:replace="fragments :: footer"></footer>

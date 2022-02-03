@@ -3,7 +3,6 @@
 <head th:replace="fragments :: head"></head>
 <body>
 <header th:replace="fragments :: header"></header>
-<h4>Addresses</h4>
 <div class=" col-6">
     <h3 th:unless="${addresses} and ${addresses.size()}">There are no addresses!</h3>
     <table th:if="${addresses.size()>0}" class="table table-hover">

@@ -78,4 +78,9 @@ public class LogisticsCompanyServiceImpl implements LogisticsCompanyService {
                 .collect(Collectors.toList());
     }
 
+
+    /*@Override
+    public List<ClientsDTO> getClientsListByCompanyId(long id) {
+        return logisticsCompanyRepository.findAllById(id);
+    }*/
 }

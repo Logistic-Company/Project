@@ -13,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -41,7 +43,7 @@ public class UserController {
     public String createUser(@Valid @ModelAttribute("user") CreateUserViewModel user,
                                  BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "userss/create-user";
+            return "users/create-user";
         }
         service.create(modelMapper.map(user, CreateUserDTO.class));
         return "redirect:/users";

@@ -25,4 +25,6 @@ public interface LogisticsCompanyService {
     //List<LogisticsCompany> getLogisticsCompany();
 
     List<ClientsDTO> getClientsList();
+
+    //List<ClientsDTO> getClientsListByCompanyId(long id);
 }

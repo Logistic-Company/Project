@@ -22,4 +22,12 @@ public class LogisticsCompanyDTO {
     private Set<CourierEmployee> courierEmployees;
     //private Set<Clients> clients;
     private int deleted;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

@@ -1,5 +1,4 @@
 package com.example.project.data.repository;
-
 import com.example.project.data.entity.Clients;
 import org.springframework.data.jpa.repository.JpaRepository;
 

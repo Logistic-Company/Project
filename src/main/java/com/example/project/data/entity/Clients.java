@@ -20,8 +20,8 @@ public class Clients extends BaseEntity{
     @ManyToMany
     @JoinTable(
             name = "logistics_companies_clients",
-            joinColumns = @JoinColumn(name = "logistics_company_id"),
-            inverseJoinColumns = @JoinColumn(name = "clients_id")
+            joinColumns = @JoinColumn(name = "clients_id"),
+            inverseJoinColumns = @JoinColumn(name = "logistics_company_id")
     )
     private Set<LogisticsCompany> logisticsCompanies;
 
