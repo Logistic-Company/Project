@@ -10,11 +10,13 @@
         <th>Id</th>
         <!--<th><a th:href="@{'/schools/sort-by-name/'+${sortDirection}}"> Name</a></th>-->
         <th>Name</th>
+        <th>Logistics Company</th>
         <th>Edit office employee</th>
         <th>Delete office employee</th>
         <tr th:each="officeEmployee : ${officeEmployees}">
             <td th:text="${officeEmployee.id}"></td>
             <td th:text="${officeEmployee.name}"></td>
+            <td th:text="${officeEmployee.logisticsCompany}"></td>
             <td><a class="btn btn-info" th:href="@{'/officeEmployees/edit-officeEmployee/'+${officeEmployee.id}}">Edit</a></td>
             <td><a class="btn btn-danger" th:href="@{'/officeEmployees/delete/'+${officeEmployee.id}}">Delete</a></td>
         </tr>

@@ -2,6 +2,7 @@ package com.example.project.web.view.controllers;
 
 import com.example.project.data.dto.*;
 import com.example.project.data.entity.OfficeEmployee;
+import com.example.project.services.LogisticsCompanyService;
 import com.example.project.services.OfficeEmployeeService;
 import com.example.project.web.view.model.*;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class OfficeEmployeeController {
 
     private OfficeEmployeeService officeEmployeeService;
+    private LogisticsCompanyService service;
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -35,16 +37,20 @@ public class OfficeEmployeeController {
     @GetMapping("/create-officeEmployee")
     public String showCreateOfficeEmployeeForm(Model model){
         model.addAttribute("officeEmployee", new CreateOfficeEmployeeViewModel());
+        List<LogisticsCompanyDTO> logisticsCompanies = service.getLogisticsCompanies();
+        model.addAttribute("logisticsCompanies", logisticsCompanies);
         return "/officeEmployees/create-officeEmployee";
     }
 
     @PostMapping("/create")
     public String createOfficeEmployee(@Valid @ModelAttribute("officeEmployee")
                                                CreateOfficeEmployeeViewModel officeEmployee,
-                                       BindingResult bindingResult){
+                                       BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             return "officeEmployees/create-officeEmployee";
         }
+        List<LogisticsCompanyDTO> logisticsCompanies = service.getLogisticsCompanies();
+        model.addAttribute("logisticsCompanies", logisticsCompanies);
         officeEmployeeService.create(modelMapper.map(officeEmployee, CreateOfficeEmployeeDTO.class));
         return "redirect:/officeEmployees";
     }
@@ -53,15 +59,19 @@ public class OfficeEmployeeController {
     public String showEditOfficeEmployeeForm(Model model, @PathVariable Long id){
         model.addAttribute("officeEmployee", modelMapper.map(officeEmployeeService.getOfficeEmployee(id),
                 UpdateOfficeEmployeeViewModel.class));
+        List<LogisticsCompanyDTO> logisticsCompanies = service.getLogisticsCompanies();
+        model.addAttribute("logisticsCompanies", logisticsCompanies);
         return "/officeEmployees/edit-officeEmployee";
     }
 
     @PostMapping("/update/{id}")
     public String updateOfficeEmployee(@PathVariable long id, @Valid @ModelAttribute("officeEmployee")
-            UpdateOfficeEmployeeViewModel officeEmployee, BindingResult bindingResult){
+            UpdateOfficeEmployeeViewModel officeEmployee, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             return "officeEmployees/edit-officeEmployee";
         }
+        List<LogisticsCompanyDTO> logisticsCompanies = service.getLogisticsCompanies();
+        model.addAttribute("logisticsCompanies", logisticsCompanies);
         officeEmployeeService.updateOfficeEmployee(id, modelMapper.map(officeEmployee, UpdateOfficeEmployeeDTO.class));
         return "redirect:/officeEmployees";
     }

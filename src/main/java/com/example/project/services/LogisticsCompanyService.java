@@ -1,9 +1,6 @@
 package com.example.project.services;
 
-import com.example.project.data.dto.ClientsDTO;
-import com.example.project.data.dto.CreateLogisticsCompanyDTO;
-import com.example.project.data.dto.LogisticsCompanyDTO;
-import com.example.project.data.dto.UpdateLogisticsCompanyDTO;
+import com.example.project.data.dto.*;
 import com.example.project.data.entity.Clients;
 import com.example.project.data.entity.LogisticsCompany;
 import java.util.List;
@@ -13,6 +10,10 @@ public interface LogisticsCompanyService {
     List<LogisticsCompanyDTO> getLogisticsCompanies();
 
     List<LogisticsCompanyDTO> getLogisticsCompanies2();
+
+    List<LogisticsCompanyDTO> getLogisticsCompanies3();
+
+    LogisticsCompany getLogisticCompany2(long id);
 
     LogisticsCompanyDTO getLogisticCompany(long id);
 
@@ -25,6 +26,10 @@ public interface LogisticsCompanyService {
     //List<LogisticsCompany> getLogisticsCompany();
 
     List<ClientsDTO> getClientsList();
+
+    List<CourierEmployeeDTO> getCouriersList();
+
+    List<OfficeEmployeeDTO> getOfficeEmployeesList();
 
     //List<ClientsDTO> getClientsListByCompanyId(long id);
 }

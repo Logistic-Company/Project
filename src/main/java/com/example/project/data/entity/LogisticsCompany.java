@@ -22,13 +22,13 @@ public class LogisticsCompany extends BaseEntity{
     @JsonIgnoreProperties("logisticsCompany")
     private Set<Office> offices;
 
-    @OneToMany(mappedBy="logisticsCompany")
+    /*@OneToMany(mappedBy="logisticsCompany")
     @JsonIgnoreProperties("logisticsCompany")
     private Set<OfficeEmployee> officeEmployees;
 
     @OneToMany(mappedBy="logisticsCompany")
     @JsonIgnoreProperties("logisticsCompany")
-    private Set<CourierEmployee> courierEmployees;
+    private Set<CourierEmployee> courierEmployees;*/
 
     /*@JoinTable(
             name = "logistics_companies_clients",

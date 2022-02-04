@@ -21,5 +21,5 @@ public class UpdateCourierEmployeeViewModel {
     @Pattern(regexp = "^([A-Z]).*", message = "Courier name  has to start with capital letter!")
     private String name;
 
-    //private LogisticsCompany logisticsCompany;
+    private LogisticsCompany logisticsCompany;
 }

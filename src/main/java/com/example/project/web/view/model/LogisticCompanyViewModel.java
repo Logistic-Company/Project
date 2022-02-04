@@ -17,7 +17,7 @@ public class LogisticCompanyViewModel {
     private long id;
     private String name;
     private Set<Office> offices;
-    private Set<OfficeEmployee> officeEmployees;
-    private Set<CourierEmployee> courierEmployees;
+    //private Set<OfficeEmployee> officeEmployees;
+    //private Set<CourierEmployee> courierEmployees;
     private Set<Clients> clients;
 }

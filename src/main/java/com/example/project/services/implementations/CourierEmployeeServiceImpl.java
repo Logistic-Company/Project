@@ -4,6 +4,7 @@ import com.example.project.data.dto.*;
 import com.example.project.data.entity.CourierEmployee;
 import com.example.project.data.entity.LogisticsCompany;
 import com.example.project.data.repository.CourierEmployeeRepository;
+import com.example.project.data.repository.LogisticsCompanyRepository;
 import com.example.project.services.CourierEmployeeService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 public class CourierEmployeeServiceImpl implements CourierEmployeeService {
 
     private final CourierEmployeeRepository courierEmployeeRepository;
+    private final LogisticsCompanyRepository logisticsCompanyRepository;
     private final ModelMapper modelMapper;
 
     @Override
@@ -49,12 +51,33 @@ public class CourierEmployeeServiceImpl implements CourierEmployeeService {
         courierEmployeeRepository.deleteById(id);
     }
 
-    /*@Override
+    @Override
     public List<CourierEmployee> findAllByName(String name) {
-        return null;
-    }*/
+        return courierEmployeeRepository.findAllByName(name);
+    }
 
     private CourierEmployeeDTO convertToCourierEmployeeDTO(CourierEmployee courierEmployee) {
         return modelMapper.map(courierEmployee, CourierEmployeeDTO.class);
+    }
+
+    private LogisticsCompany convertToCompanies(LogisticsCompany logisticsCompany) {
+        return modelMapper.map(logisticsCompany, LogisticsCompany.class);
+    }
+
+    @Override
+    public List<LogisticsCompany> listLogisticCompanies() {
+        return logisticsCompanyRepository.findAll().stream()
+                .map(this::convertToCompanies)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void save(CourierEmployee courierEmployee) {
+        courierEmployeeRepository.save(courierEmployee);
+    }
+
+    @Override
+    public List<CourierEmployee> findAllByLogisticsCompany(LogisticsCompany logisticsCompany) {
+        return courierEmployeeRepository.findAllByLogisticsCompany(logisticsCompany);
     }
 }
