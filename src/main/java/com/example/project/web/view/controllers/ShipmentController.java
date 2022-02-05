@@ -4,6 +4,8 @@ import com.example.project.data.dto.CreateShipmentDTO;
 import com.example.project.data.dto.ShipmentDTO;
 import com.example.project.data.dto.UpdateShipmentDTO;
 import com.example.project.data.entity.Shipment;
+import com.example.project.services.AddressService;
+import com.example.project.services.ClientsService;
 import com.example.project.services.ShipmentService;
 import com.example.project.web.view.model.CreateShipmentViewModel;
 import com.example.project.web.view.model.ShipmentViewModel;
@@ -25,7 +27,8 @@ import java.util.stream.Collectors;
 public class ShipmentController {
     private ShipmentService shipmentService;
     private final ModelMapper modelMapper;
-
+    private AddressService addressService;
+    private ClientsService clientsService;
 
     @GetMapping
     public String getShipments(Model model){
@@ -39,21 +42,28 @@ public class ShipmentController {
     @GetMapping("/create-shipment")
     public String showCreateShipmentForm(Model model){
         model.addAttribute("shipment", new CreateShipmentViewModel());
+        model.addAttribute("addresses", addressService.getAddresses());
+        model.addAttribute("clients", clientsService.getClients());
         return "/shipments/create-shipment";
     }
 
     @PostMapping("/create")
     public String createShipment(@Valid @ModelAttribute("shipment") CreateShipmentViewModel shipment,
-                                 BindingResult bindingResult){
+                                 BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             return "shipments/create-shipment";
         }
+        model.addAttribute("shipment", new CreateShipmentViewModel());
+        model.addAttribute("addresses", addressService.getAddresses());
+        model.addAttribute("clients", clientsService.getClients());
         shipmentService.create(modelMapper.map(shipment, CreateShipmentDTO.class));
         return "redirect:/shipments";
     }
 
     @GetMapping("/edit-shipment/{id}")
     public String showEditShipmentForm(Model model, @PathVariable Long id){
+        model.addAttribute("addresses", addressService.getAddresses());
+        model.addAttribute("clients", clientsService.getClients());
         model.addAttribute("shipment", modelMapper.map(shipmentService.getShipment(id),
                 UpdateShipmentViewModel.class));
         return "/shipments/edit-shipment";
@@ -61,10 +71,13 @@ public class ShipmentController {
 
     @PostMapping("/update/{id}")
     public String updateShipment(@PathVariable long id, @Valid @ModelAttribute("shipment") UpdateShipmentViewModel shipment,
-                                 BindingResult bindingResult){
+                                 BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             return "shipments/edit-shipment";
         }
+        //model.addAttribute("shipment", new CreateShipmentViewModel());
+        model.addAttribute("addresses", addressService.getAddresses());
+        model.addAttribute("clients", clientsService.getClients());
         shipmentService.updateShipment(id, modelMapper.map(shipment, UpdateShipmentDTO.class));
         return "redirect:/shipments";
     }

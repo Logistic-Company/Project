@@ -18,6 +18,8 @@ import javax.persistence.Table;
 @Table(name="shipment")
 
 public class Shipment extends BaseEntity {
+    private long id;
+
     @OneToOne
     @JoinColumn(name="sender")
     private Clients sender;

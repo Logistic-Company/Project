@@ -77,4 +77,6 @@ public class OfficeEmployeeServiceImpl implements OfficeEmployeeService {
     public List<OfficeEmployee> findAllByLogisticsCompany(LogisticsCompany logisticsCompany) {
         return officeEmployeeRepository.findAllByLogisticsCompany(logisticsCompany);
     }
+
+
 }
