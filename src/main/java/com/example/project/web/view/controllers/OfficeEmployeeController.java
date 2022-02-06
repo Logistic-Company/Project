@@ -2,8 +2,10 @@ package com.example.project.web.view.controllers;
 
 import com.example.project.data.dto.*;
 import com.example.project.data.entity.OfficeEmployee;
+import com.example.project.data.entity.Shipment;
 import com.example.project.services.LogisticsCompanyService;
 import com.example.project.services.OfficeEmployeeService;
+import com.example.project.services.ShipmentService;
 import com.example.project.web.view.model.*;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -23,6 +25,7 @@ public class OfficeEmployeeController {
 
     private OfficeEmployeeService officeEmployeeService;
     private LogisticsCompanyService service;
+    private ShipmentService shipmentService;
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -84,6 +87,24 @@ public class OfficeEmployeeController {
 
     private OfficeEmployeeViewModel convertToOfficeEmployeeViewModel(OfficeEmployeeDTO officeEmployeeDTO) {
         return modelMapper.map(officeEmployeeDTO, OfficeEmployeeViewModel.class);
+    }
+
+    @GetMapping("/selectOfficeEmployees")
+    public String getOfficeEmployees2(Model model){
+        final List<OfficeEmployeeViewModel> officeEmployees = officeEmployeeService.getOfficeEmployees()
+                .stream().map(this::convertToOfficeEmployeeViewModel)
+                .collect(Collectors.toList());
+        model.addAttribute("officeEmployees", officeEmployees);
+        return "/officeEmployees/selectOfficeEmployeesForShipments";
+    }
+
+    @GetMapping("/referenceForShipmentsFormForEmployees/{id}")
+    public String getOfficeEmployeeShipments(@PathVariable("id") long id, Model model) {
+        OfficeEmployee officeEmployee = officeEmployeeService.getOfficeEmployee2(id);
+        model.addAttribute("officeEmployee", officeEmployee);
+        List<Shipment> shipmentList = shipmentService.getAllShipmentsForOfficeEmployee(officeEmployee);
+        model.addAttribute("shipmentList", shipmentList);
+        return "officeEmployees/referenceForShipments";
     }
 
 }

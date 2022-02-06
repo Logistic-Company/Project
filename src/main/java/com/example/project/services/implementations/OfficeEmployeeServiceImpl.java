@@ -1,12 +1,11 @@
 package com.example.project.services.implementations;
 
 import com.example.project.data.dto.*;
-import com.example.project.data.entity.CourierEmployee;
-import com.example.project.data.entity.LogisticsCompany;
-import com.example.project.data.entity.OfficeEmployee;
+import com.example.project.data.entity.*;
 import com.example.project.data.repository.CourierEmployeeRepository;
 import com.example.project.data.repository.LogisticsCompanyRepository;
 import com.example.project.data.repository.OfficeEmployeeRepository;
+import com.example.project.data.repository.ShipmentRepository;
 import com.example.project.services.OfficeEmployeeService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -21,6 +20,7 @@ public class OfficeEmployeeServiceImpl implements OfficeEmployeeService {
 
     private final OfficeEmployeeRepository officeEmployeeRepository;
     private final LogisticsCompanyRepository logisticsCompanyRepository;
+    private final ShipmentRepository shipmentRepository;
     private final ModelMapper modelMapper;
 
     @Override
@@ -73,12 +73,24 @@ public class OfficeEmployeeServiceImpl implements OfficeEmployeeService {
                 .collect(Collectors.toList());
     }
 
+    private ShipmentDTO convertToShipmentsDTO(Shipment shipment) {
+        return modelMapper.map(shipment, ShipmentDTO.class);
+    }
 
+    @Override
+    public List<ShipmentDTO> getShipmentsList() {
+        return shipmentRepository.findAll().stream()
+                .map(this::convertToShipmentsDTO)
+                .collect(Collectors.toList());
+    }
 
     @Override
     public List<OfficeEmployee> findAllByLogisticsCompany(LogisticsCompany logisticsCompany) {
         return officeEmployeeRepository.findAllByLogisticsCompany(logisticsCompany);
     }
 
-
+    @Override
+    public OfficeEmployee getOfficeEmployee2(long id) {
+        return officeEmployeeRepository.getById(id);
+    }
 }

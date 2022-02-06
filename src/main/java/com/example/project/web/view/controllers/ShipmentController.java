@@ -3,13 +3,13 @@ package com.example.project.web.view.controllers;
 import com.example.project.data.dto.CreateShipmentDTO;
 import com.example.project.data.dto.ShipmentDTO;
 import com.example.project.data.dto.UpdateShipmentDTO;
+import com.example.project.data.entity.OfficeEmployee;
 import com.example.project.data.entity.Shipment;
 import com.example.project.services.AddressService;
 import com.example.project.services.ClientsService;
+import com.example.project.services.OfficeEmployeeService;
 import com.example.project.services.ShipmentService;
-import com.example.project.web.view.model.CreateShipmentViewModel;
-import com.example.project.web.view.model.ShipmentViewModel;
-import com.example.project.web.view.model.UpdateShipmentViewModel;
+import com.example.project.web.view.model.*;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/shipments")
 public class ShipmentController {
     private ShipmentService shipmentService;
+    private OfficeEmployeeService officeEmployeeService;
     private final ModelMapper modelMapper;
     private AddressService addressService;
     private ClientsService clientsService;
@@ -44,6 +45,7 @@ public class ShipmentController {
         model.addAttribute("shipment", new CreateShipmentViewModel());
         model.addAttribute("addresses", addressService.getAddresses());
         model.addAttribute("clients", clientsService.getClients());
+        model.addAttribute("officeEmployees", officeEmployeeService.getOfficeEmployees());
         return "/shipments/create-shipment";
     }
 
@@ -56,6 +58,7 @@ public class ShipmentController {
         model.addAttribute("shipment", new CreateShipmentViewModel());
         model.addAttribute("addresses", addressService.getAddresses());
         model.addAttribute("clients", clientsService.getClients());
+        model.addAttribute("officeEmployees", officeEmployeeService.getOfficeEmployees());
         shipmentService.create(modelMapper.map(shipment, CreateShipmentDTO.class));
         return "redirect:/shipments";
     }
@@ -64,6 +67,7 @@ public class ShipmentController {
     public String showEditShipmentForm(Model model, @PathVariable Long id){
         model.addAttribute("addresses", addressService.getAddresses());
         model.addAttribute("clients", clientsService.getClients());
+        model.addAttribute("officeEmployees", officeEmployeeService.getOfficeEmployees());
         model.addAttribute("shipment", modelMapper.map(shipmentService.getShipment(id),
                 UpdateShipmentViewModel.class));
         return "/shipments/edit-shipment";
@@ -75,9 +79,9 @@ public class ShipmentController {
         if(bindingResult.hasErrors()){
             return "shipments/edit-shipment";
         }
-        //model.addAttribute("shipment", new CreateShipmentViewModel());
         model.addAttribute("addresses", addressService.getAddresses());
         model.addAttribute("clients", clientsService.getClients());
+        model.addAttribute("officeEmployees", officeEmployeeService.getOfficeEmployees());
         shipmentService.updateShipment(id, modelMapper.map(shipment, UpdateShipmentDTO.class));
         return "redirect:/shipments";
     }

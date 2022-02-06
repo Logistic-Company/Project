@@ -19,6 +19,7 @@
                 <th>Weight</th>
                 <th>Receiver</th>
                 <th>Sender</th>
+                <th>Office employee</th>
                 <th>Edit shipment</th>
                 <th>Delete shipment</th>
             </tr>
@@ -30,6 +31,7 @@
                 <td th:text="${shipment.weight}"></td>
                 <td th:text="${shipment.receiver.name}"></td>
                 <td th:text="${shipment.sender.name}"></td>
+                <td th:text="${shipment.officeEmployee.name}"></td>
                 <td><a class="btn btn-info" th:href="@{'/shipments/edit-shipment/'+${shipment.id}}">Edit</a></td>
                 <td><a class="btn btn-danger" th:href="@{'/shipments/delete/'+${shipment.id}}">Delete</a></td>
             </tr>

@@ -24,4 +24,6 @@ public class CreateOfficeDTO {
 
     private LogisticsCompany logisticsCompany;
 
+
+
 }

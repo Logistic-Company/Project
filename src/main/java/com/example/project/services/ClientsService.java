@@ -27,10 +27,6 @@ public interface ClientsService {
 
     List<Clients> listComp(LogisticsCompany logisticsCompany);
 
-    //List<Clients> listLg(LogisticsCompanyDTO logisticsCompanyDTO);
-
-    //List<Clients> clientsListByCompany(LogisticsCompanyDTO logisticsCompany);
-
     void save(Clients clients);
 
 }

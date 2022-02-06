@@ -87,6 +87,14 @@
                     th:text="${reciever.name}"></option>
         </select>
 
+        </br>
+        <label for="officeEmployee">Office employee</label>
+        <select class="form-control" th:field="${shipment.officeEmployee}" id="officeEmployee">
+            <option value="">Select office employee</option>
+            <option th:each="officeEmployee : ${officeEmployees}" th:value="${officeEmployee.id}"
+                    th:text="${officeEmployee.name}"></option>
+        </select>
+
         <div class="form-group">
             <button name="submit" type="submit" class="btn btn-primary w-25 p-2">Save</button>
         </div>

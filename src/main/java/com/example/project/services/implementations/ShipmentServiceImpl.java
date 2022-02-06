@@ -3,6 +3,7 @@ package com.example.project.services.implementations;
 import com.example.project.data.dto.CreateShipmentDTO;
 import com.example.project.data.dto.ShipmentDTO;
 import com.example.project.data.dto.UpdateShipmentDTO;
+import com.example.project.data.entity.OfficeEmployee;
 import com.example.project.data.entity.Shipment;
 import com.example.project.data.repository.ShipmentRepository;
 import com.example.project.services.ShipmentService;
@@ -52,5 +53,10 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     private ShipmentDTO convertToShipmentDTO(Shipment shipment) {
         return modelMapper.map(shipment, ShipmentDTO.class);
+    }
+
+    @Override
+    public List<Shipment> getAllShipmentsForOfficeEmployee(OfficeEmployee officeEmployee) {
+        return shipmentRepository.findAllByOfficeEmployee(officeEmployee);
     }
 }
