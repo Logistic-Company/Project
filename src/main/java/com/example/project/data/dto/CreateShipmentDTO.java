@@ -1,9 +1,6 @@
 package com.example.project.data.dto;
 
-import com.example.project.data.entity.Address;
-import com.example.project.data.entity.Clients;
-import com.example.project.data.entity.OfficeEmployee;
-import com.example.project.data.entity.Shipment;
+import com.example.project.data.entity.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,5 +15,6 @@ public class CreateShipmentDTO {
     private Clients receiver;
     private Address address;
     private OfficeEmployee officeEmployee;
+    private LogisticsCompany logisticsCompany;
     private double weight;
 }

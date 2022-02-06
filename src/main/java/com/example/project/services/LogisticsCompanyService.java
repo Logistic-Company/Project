@@ -13,6 +13,8 @@ public interface LogisticsCompanyService {
 
     List<LogisticsCompanyDTO> getLogisticsCompanies3();
 
+    List<LogisticsCompanyDTO> getLogisticsCompanies4();
+
     LogisticsCompany getLogisticCompany2(long id);
 
     LogisticsCompanyDTO getLogisticCompany(long id);
@@ -30,6 +32,8 @@ public interface LogisticsCompanyService {
     List<CourierEmployeeDTO> getCouriersList();
 
     List<OfficeEmployeeDTO> getOfficeEmployeesList();
+
+    List<ShipmentDTO> getShipmentsList();
 
     //List<ClientsDTO> getClientsListByCompanyId(long id);
 }
