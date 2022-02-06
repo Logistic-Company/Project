@@ -6,7 +6,6 @@ import com.example.project.data.dto.LogisticsCompanyDTO;
 import com.example.project.data.dto.UpdateClientsDTO;
 import com.example.project.data.entity.Clients;
 import com.example.project.data.entity.LogisticsCompany;
-import com.example.project.data.entity.User;
 
 import java.util.List;
 
@@ -26,7 +25,11 @@ public interface ClientsService {
 
     List<LogisticsCompany> listLogisticCompanies();
 
+    List<Clients> listComp(LogisticsCompany logisticsCompany);
+
     //List<Clients> listLg(LogisticsCompanyDTO logisticsCompanyDTO);
+
+    //List<Clients> clientsListByCompany(LogisticsCompanyDTO logisticsCompany);
 
     void save(Clients clients);
 

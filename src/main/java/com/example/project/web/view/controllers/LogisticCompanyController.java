@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -107,9 +108,9 @@ public class LogisticCompanyController {
 
     @GetMapping("/referenceForCompaniesForm/{id}")
     public String getClientsList(@PathVariable("id") long id, Model model) {
-        LogisticsCompanyDTO logisticsCompany = logisticsCompanyService.getLogisticCompany(id);
+        LogisticsCompany logisticsCompany = logisticsCompanyService.getLogisticCompany2(id);
         model.addAttribute("logisticCompany", logisticsCompany);
-        List<ClientsDTO> clientsList = clientsService.getClients();
+        List<Clients> clientsList = clientsService.listComp(logisticsCompany);
         model.addAttribute("clientsList", clientsList);
         return "logisticCompanies/referenceForClients";
     }

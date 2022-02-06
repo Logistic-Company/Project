@@ -73,6 +73,8 @@ public class OfficeEmployeeServiceImpl implements OfficeEmployeeService {
                 .collect(Collectors.toList());
     }
 
+
+
     @Override
     public List<OfficeEmployee> findAllByLogisticsCompany(LogisticsCompany logisticsCompany) {
         return officeEmployeeRepository.findAllByLogisticsCompany(logisticsCompany);

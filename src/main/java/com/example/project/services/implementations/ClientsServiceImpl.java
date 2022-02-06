@@ -6,8 +6,6 @@ import com.example.project.data.dto.LogisticsCompanyDTO;
 import com.example.project.data.dto.UpdateClientsDTO;
 import com.example.project.data.entity.Clients;
 import com.example.project.data.entity.LogisticsCompany;
-import com.example.project.data.entity.Roles;
-import com.example.project.data.entity.User;
 import com.example.project.data.repository.ClientsRepository;
 import com.example.project.data.repository.LogisticsCompanyRepository;
 import com.example.project.services.ClientsService;
@@ -24,7 +22,6 @@ public class ClientsServiceImpl implements ClientsService {
     
     private final ClientsRepository clientsRepository;
     private final LogisticsCompanyRepository logisticsCompanyRepository;
-
     private final ModelMapper modelMapper;
 
     @Override
@@ -77,6 +74,11 @@ public class ClientsServiceImpl implements ClientsService {
         return logisticsCompanyRepository.findAll().stream()
                 .map(this::convertToCompanies)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Clients> listComp(LogisticsCompany logisticsCompany) {
+        return clientsRepository.findAllByLogisticsCompaniesContaining(logisticsCompany);
     }
 
     /* public void registerDefaultCompany(LogisticsCompany logisticsCompany) {
