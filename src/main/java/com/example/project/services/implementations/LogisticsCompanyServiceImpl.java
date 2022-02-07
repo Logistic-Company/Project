@@ -1,14 +1,8 @@
 package com.example.project.services.implementations;
 
 import com.example.project.data.dto.*;
-import com.example.project.data.entity.Clients;
-import com.example.project.data.entity.CourierEmployee;
-import com.example.project.data.entity.LogisticsCompany;
-import com.example.project.data.entity.OfficeEmployee;
-import com.example.project.data.repository.ClientsRepository;
-import com.example.project.data.repository.CourierEmployeeRepository;
-import com.example.project.data.repository.LogisticsCompanyRepository;
-import com.example.project.data.repository.OfficeEmployeeRepository;
+import com.example.project.data.entity.*;
+import com.example.project.data.repository.*;
 import com.example.project.services.LogisticsCompanyService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -26,6 +20,7 @@ public class LogisticsCompanyServiceImpl implements LogisticsCompanyService {
     private final ClientsRepository clientsRepository;
     private final CourierEmployeeRepository courierEmployeeRepository;
     private final OfficeEmployeeRepository officeEmployeeRepository;
+    private final ShipmentRepository shipmentRepository;
     private final ModelMapper modelMapper;
 
     @Override
@@ -50,6 +45,14 @@ public class LogisticsCompanyServiceImpl implements LogisticsCompanyService {
     }
 
     @Override
+    public List<LogisticsCompanyDTO> getLogisticsCompanies4() {
+        return logisticsCompanyRepository.findAll().stream()
+                .map(this::convertToLogisticsCompanyDTO)
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
     public LogisticsCompanyDTO getLogisticCompany(long id) {
         return modelMapper
                 .map(logisticsCompanyRepository.findById(id).orElseThrow(()
@@ -61,6 +64,7 @@ public class LogisticsCompanyServiceImpl implements LogisticsCompanyService {
     public LogisticsCompany getLogisticCompany2(long id) {
         return logisticsCompanyRepository.getById(id);
     }
+
 
     @Override
     public LogisticsCompany create(CreateLogisticsCompanyDTO createLogisticsCompanyDTO) {
@@ -95,6 +99,10 @@ public class LogisticsCompanyServiceImpl implements LogisticsCompanyService {
         return modelMapper.map(officeEmployee, OfficeEmployeeDTO.class);
     }
 
+    private ShipmentDTO convertToShipmentsDTO(Shipment shipment) {
+        return modelMapper.map(shipment, ShipmentDTO.class);
+    }
+
     @Override
     public List<ClientsDTO> getClientsList() {
         return clientsRepository.findAll().stream()
@@ -113,6 +121,13 @@ public class LogisticsCompanyServiceImpl implements LogisticsCompanyService {
     public List<OfficeEmployeeDTO> getOfficeEmployeesList() {
         return officeEmployeeRepository.findAll().stream()
                 .map(this::convertToOfficeEmployeesDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ShipmentDTO> getShipmentsList() {
+        return shipmentRepository.findAll().stream()
+                .map(this::convertToShipmentsDTO)
                 .collect(Collectors.toList());
     }
 

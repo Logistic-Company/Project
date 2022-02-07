@@ -37,4 +37,8 @@ public class Shipment extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="office_employee_id")
     private OfficeEmployee officeEmployee;
+
+    @ManyToOne
+    @JoinColumn(name="logisticsCompany_id")
+    private LogisticsCompany logisticsCompany;
 }

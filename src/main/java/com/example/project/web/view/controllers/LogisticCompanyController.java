@@ -7,6 +7,7 @@ import com.example.project.services.CourierEmployeeService;
 import com.example.project.services.LogisticsCompanyService;
 import com.example.project.services.OfficeEmployeeService;
 import com.example.project.services.implementations.LogisticsCompanyServiceImpl;
+import com.example.project.services.implementations.ShipmentServiceImpl;
 import com.example.project.web.view.model.ClientsViewModel;
 import com.example.project.web.view.model.CreateLogisticCompanyViewModel;
 import com.example.project.web.view.model.LogisticCompanyViewModel;
@@ -33,6 +34,7 @@ public class LogisticCompanyController {
     private CourierEmployeeService courierEmployeeService;
     private OfficeEmployeeService officeEmployeeService;
     private LogisticsCompanyServiceImpl logisticsCompanyServiceImpl;
+    private ShipmentServiceImpl shipmentService;
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -61,6 +63,16 @@ public class LogisticCompanyController {
         model.addAttribute("logisticCompanies", logisticsCompanies);
         return "/logisticCompanies/selectCompanyForEmployees";
     }
+
+    @GetMapping("/selectShipments")
+    public String getLogisticsCompany4(Model model){
+        final List<LogisticCompanyViewModel> logisticsCompanies = logisticsCompanyService.getLogisticsCompanies()
+                .stream().map(this::convertToLogisticsCompanyViewModel)
+                .collect(Collectors.toList());
+        model.addAttribute("logisticCompanies", logisticsCompanies);
+        return "/logisticCompanies/selectCompanyForShipments";
+    }
+
 
     @GetMapping("/create-logisticCompany")
     public String showCreateLogisticCompanyForm(Model model){
@@ -124,6 +136,15 @@ public class LogisticCompanyController {
         List<OfficeEmployee> officeEmployeeList = officeEmployeeService.findAllByLogisticsCompany(logisticsCompany);
         model.addAttribute("officeEmployeeList", officeEmployeeList);
         return "logisticCompanies/referenceForEmployees";
+    }
+
+    @GetMapping("/referenceForCompaniesFormForShipments/{id}")
+    public String getShipmentList(@PathVariable("id") long id, Model model) {
+        LogisticsCompany logisticsCompany = logisticsCompanyService.getLogisticCompany2(id);
+        model.addAttribute("logisticCompany", logisticsCompany);
+        List<Shipment> shipmentsList = shipmentService.findAllByLogisticsCompany(logisticsCompany);
+        model.addAttribute("shipmentsList", shipmentsList);
+        return "logisticCompanies/referenceForShipments";
     }
 
 }
