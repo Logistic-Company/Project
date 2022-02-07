@@ -1,27 +1,3 @@
-<!--<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head"></head>
-<body>
-<header th:replace="fragments :: header"></header>
-<h4 th:if="${logisticCompanies.size()>0}" th:text="'Registered Logistic Companies: ' + ${logisticCompanies.size()}"> </h4>
-<div class=" col-6">
-    <h3 th:unless="${logisticCompanies} and ${logisticCompanies.size()}">There are no logisticCompanies!</h3>
-    <table th:if="${logisticCompanies.size()>0}" class="table table-hover">
-        <th>Id</th>
-        <th>Name</th>
-        <th>Edit company</th>
-        <th>Delete company</th>
-        <tr th:each="logisticCompany : ${logisticCompanies}">
-            <td th:text="${logisticCompany.id}"></td>
-            <td th:text="${logisticCompany.name}"></td>
-            <td><a class="btn btn-info" th:href="@{'/logisticCompanies/edit-logisticCompany/'+${logisticCompany.id}}">Edit</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/logisticCompanies/delete/'+${logisticCompany.id}}">Delete</a></td>
-        </tr>
-    </table>
-</div>
-<footer th:replace="fragments :: footer"></footer>
-</body>
-</html>-->
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
