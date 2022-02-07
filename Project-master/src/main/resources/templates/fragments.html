@@ -1,3 +1,72 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <title>Logistics Company Management</title>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<header th:fragment="header">
+    <h1>Logistics Company Management System</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navigation">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar=nav mr-auto row">
+                <li class="nav-item active ">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logisticCompanies">List of Logistic Companies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logisticCompanies/create-logisticCompany">Create Logistic Company</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clients">List of Clients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clients/create-client">Create Client</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/shipments">List of Shipments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/shipments/create-shipment">Create Shipment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/addresses">List of Addresses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/addresses/create-address">Create Address</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/courierEmployees">List of Courier Employees</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/courierEmployees/create-courierEmployee">Create Courier Employees</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logisticCompanies/select">Reference for clients</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logisticCompanies/selectEmployees">Reference for employees</a>
+                </li>
+            </ul>
+        </div>
+
+
+    </nav>
+
+</header>
+
+<footer page-footer font-small>
+    <div class="footer-copyright text-center py-3"> 2022 Copyright:
+        <a href="#"> Logistics Company Management System</a>
+    </div>
+</footer>
+</html>-->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
@@ -25,6 +94,17 @@
                         <a class="dropdown-item" href="/logisticCompanies/create-logisticCompany">Create Logistic Company</a>
                     </div>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="rolesLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Roles
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="rolesLink">
+                        <a class="dropdown-item"  href="/roles">List of Roles</a>
+                        <a class="dropdown-item" href="/roles/create-role">Create Role</a>
+                    </div>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="clientsLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Clients
@@ -62,6 +142,16 @@
                     </div>
                 </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="referenceLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Reference
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="referenceLink">
+                        <a class="dropdown-item" href="/logisticCompanies/selectEmployees">Reference for Employees</a>
+                        <a class="dropdown-item" href="/logisticCompanies/select">Reference for Clients</a>
+                        <a class="dropdown-item" href="/officeEmployees/selectOfficeEmployees">Reference for Shipments by Employee</a>
+                    </div>
+                </li>
 
             </ul>
         </div>

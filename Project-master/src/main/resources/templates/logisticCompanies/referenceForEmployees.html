@@ -2,6 +2,7 @@
 <html lang="en">
 <head th:replace="fragments :: head"></head>
 <body>
+<header th:replace="fragments :: header"></header>
 <form th:action="@{/logisticCompanies/referenceForCompaniesFormForEmployees/{id}(id=${id})}" th:object="${logisticCompany}" method="get">
     <div class="container text-center">
         <div>

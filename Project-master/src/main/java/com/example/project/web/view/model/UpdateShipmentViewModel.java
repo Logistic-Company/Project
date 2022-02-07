@@ -2,6 +2,7 @@ package com.example.project.web.view.model;
 
 import com.example.project.data.entity.Address;
 import com.example.project.data.entity.Clients;
+import com.example.project.data.entity.OfficeEmployee;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,4 +40,6 @@ public class UpdateShipmentViewModel {
     @NotNull
     @Min(value = 0L, message = "The value must be positive")*/
     private double weight;
+
+    private OfficeEmployee officeEmployee;
 }

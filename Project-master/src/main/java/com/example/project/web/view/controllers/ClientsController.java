@@ -1,8 +1,13 @@
 package com.example.project.web.view.controllers;
 
+import ch.qos.logback.core.net.server.Client;
 import com.example.project.data.dto.*;
+import com.example.project.data.entity.Clients;
 import com.example.project.data.entity.LogisticsCompany;
+import com.example.project.data.entity.OfficeEmployee;
+import com.example.project.data.entity.Shipment;
 import com.example.project.services.ClientsService;
+import com.example.project.services.ShipmentService;
 import com.example.project.services.implementations.LogisticsCompanyServiceImpl;
 import com.example.project.web.view.model.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +28,8 @@ public class ClientsController {
     private ClientsService clientsService;
     private LogisticsCompanyServiceImpl service;
     private final ModelMapper modelMapper;
+    private ShipmentService shipmentService;
+
 
     @GetMapping
     public String getClients(Model model) {
@@ -84,6 +91,25 @@ public class ClientsController {
     private ClientsViewModel convertToClientsViewModel(ClientsDTO clientsDTO) {
         return modelMapper.map(clientsDTO, ClientsViewModel.class);
     }
+
+    @GetMapping("/selectClient")
+    public String getOfficeClients(Model model){
+        final List<ClientsViewModel> clients = clientsService.getClients()
+                .stream().map(this::convertToClientsViewModel)
+                .collect(Collectors.toList());
+        model.addAttribute("clients", clients);
+        return "/clients/selectClientForShipments";
+    }
+
+    @GetMapping("/referenceForShipmentsForClient/{id}")
+    public String getClientShipments(@PathVariable("id") long id, Model model) {
+        Clients client = clientsService.getClient2(id);
+        model.addAttribute("client", client);
+        List<Shipment> shipmentList = shipmentService.getAllShipmentsForClient(client, null);
+        model.addAttribute("shipmentList", shipmentList);
+        return "clients/referenceForShipments";
+    }
+
 
 
 }

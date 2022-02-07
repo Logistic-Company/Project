@@ -11,4 +11,5 @@ public interface OfficeEmployeeRepository extends JpaRepository<OfficeEmployee, 
     List<OfficeEmployee> findAllByName(String name);
 
     List<OfficeEmployee> findAllByLogisticsCompany(LogisticsCompany logisticsCompany);
+
 }

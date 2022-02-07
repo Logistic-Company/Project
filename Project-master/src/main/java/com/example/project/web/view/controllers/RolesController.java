@@ -2,7 +2,6 @@ package com.example.project.web.view.controllers;
 
 import com.example.project.data.dto.*;
 import com.example.project.services.RoleService;
-import com.example.project.services.ShipmentService;
 import com.example.project.web.view.model.*;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -21,7 +20,6 @@ import java.util.stream.Collectors;
 public class RolesController {
     private RoleService roleService;
     private final ModelMapper modelMapper;
-
 
     @GetMapping
     public String getRoles(Model model){

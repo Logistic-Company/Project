@@ -1,15 +1,14 @@
 package com.example.project.services.implementations;
 
-import com.example.project.data.dto.ClientsDTO;
-import com.example.project.data.dto.CreateClientsDTO;
-import com.example.project.data.dto.LogisticsCompanyDTO;
-import com.example.project.data.dto.UpdateClientsDTO;
+import ch.qos.logback.core.net.server.Client;
+import com.example.project.data.dto.*;
 import com.example.project.data.entity.Clients;
 import com.example.project.data.entity.LogisticsCompany;
-import com.example.project.data.entity.Roles;
-import com.example.project.data.entity.User;
+import com.example.project.data.entity.OfficeEmployee;
+import com.example.project.data.entity.Shipment;
 import com.example.project.data.repository.ClientsRepository;
 import com.example.project.data.repository.LogisticsCompanyRepository;
+import com.example.project.data.repository.ShipmentRepository;
 import com.example.project.services.ClientsService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -24,8 +23,8 @@ public class ClientsServiceImpl implements ClientsService {
     
     private final ClientsRepository clientsRepository;
     private final LogisticsCompanyRepository logisticsCompanyRepository;
-
     private final ModelMapper modelMapper;
+    private final ShipmentRepository shipmentRepository;
 
     @Override
     public List <ClientsDTO> getClients() {
@@ -79,11 +78,32 @@ public class ClientsServiceImpl implements ClientsService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Clients> listComp(LogisticsCompany logisticsCompany) {
+        return clientsRepository.findAllByLogisticsCompaniesContaining(logisticsCompany);
+    }
+
+    private ShipmentDTO convertToShipmentsDTO(Shipment shipment) {
+        return modelMapper.map(shipment, ShipmentDTO.class);
+    }
+
+
+    @Override
+    public List<ShipmentDTO> getRecievedShipmentsList() {
+        return shipmentRepository.findAll().stream()
+                .map(this::convertToShipmentsDTO    )
+                .collect(Collectors.toList());
+    }
+
     /* public void registerDefaultCompany(LogisticsCompany logisticsCompany) {
         Clients clients = clientsRepository.getById(1L);
         logisticsCompany.addClient(clients);
         clientsRepository.save(clients);
     }*/
+    @Override
+    public Clients getClient2(long id) {
+        return clientsRepository.getById(id);
+    }
 
     @Override
     public void save(Clients clients) {

@@ -18,9 +18,9 @@ import java.util.Set;
 public class LogisticsCompany extends BaseEntity{
     private String name;
 
-    @OneToMany(mappedBy="logisticsCompany")
+    /*@OneToMany(mappedBy="logisticsCompany")
     @JsonIgnoreProperties("logisticsCompany")
-    private Set<Office> offices;
+    private Set<Office> offices;*/
 
     /*@OneToMany(mappedBy="logisticsCompany")
     @JsonIgnoreProperties("logisticsCompany")
